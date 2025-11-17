@@ -282,9 +282,9 @@ class NetworkApp {
     }
 
     calculateNodePositions() {
-        const cols = 4; // 最大4列に配置
-        const svgWidth = 1200;
-        const svgHeight = 900;
+        const cols = 5; // 最大5列に配置（幅が広くなったため）
+        const svgWidth = 1600;
+        const svgHeight = 600;
         const horizontalSpacing = svgWidth / (cols + 1);
 
         // カスタム位置を持たないノードのインデックスを取得
@@ -312,8 +312,8 @@ class NetworkApp {
 
     drawGrid() {
         const gridSize = 100;
-        const width = 1200;
-        const height = 900;
+        const width = 1600;
+        const height = 600;
 
         // 縦線
         for (let x = 0; x <= width; x += gridSize) {
@@ -1097,8 +1097,8 @@ class NetworkApp {
         return new Promise((resolve, reject) => {
             try {
                 const canvas = document.createElement('canvas');
-                canvas.width = 1200;
-                canvas.height = 900;
+                canvas.width = 1600;
+                canvas.height = 600;
 
                 const ctx = canvas.getContext('2d');
                 ctx.fillStyle = '#ffffff';
