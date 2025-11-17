@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ネットワークの物理的な接続を予想するWEBアプリ</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>🌐 ネットワークの物理的な接続を予想するWEBアプリ</h1>
+                <p class="header-subtitle">ネットワークノードを追加して、ネットワーク接続をシミュレート</p>
+            </div>
+        </header>
+
+        <main>
+            <div class="layout">
+                <!-- ノード一覧（上側）-->
+                <aside class="node-list-panel">
+                    <div class="panel-header">
+                        <h2>📱 ノード一覧</h2>
+                        <span class="node-count-badge" id="nodeCountBadge">0/20</span>
+                    </div>
+                    <p class="hint">ノードをクリック、またはドラッグ&ドロップしてネットワーク図に追加</p>
+                    <div class="node-list" id="nodeList">
+                        <!-- JavaScript で動的に生成 -->
+                    </div>
+                </aside>
+
+                <!-- ネットワーク図（下側）-->
+                <section class="diagram-panel">
+                    <div class="panel-header">
+                        <div class="diagram-header-left">
+                            <h2>🔗 ネットワーク図</h2>
+                            <div class="legend">
+                                <span class="legend-item wireless">破線 = 無線</span>
+                                <span class="legend-item wired">実線 = 有線</span>
+                            </div>
+                        </div>
+                        <button class="download-btn" id="downloadBtn" title="ネットワーク図をPNGで保存">
+                            📥 PNGで保存
+                        </button>
+                    </div>
+                    <p class="hint">【デスクトップ】中央をドラッグ=移動 | 枠をドラッグ=接続 | クリック=削除 | 線をクリック=無線/有線切り替え</p>
+                    <p class="hint">【iPad/タッチ】中央をドラッグ=移動 | 枠をロングプレス+ドラッグ=接続 | タップ=削除 | 線をタップ=無線/有線切り替え</p>
+                    <div class="diagram-container">
+                        <svg id="networkDiagram" class="network-diagram" viewBox="0 0 1200 900"></svg>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <p>© 2024 Network Connection App | ネットワークシミュレーション学習用ツール</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

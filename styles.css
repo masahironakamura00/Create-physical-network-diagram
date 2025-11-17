@@ -1,0 +1,521 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #3b82f6;
+    --primary-dark: #1e40af;
+    --secondary-color: #8b5cf6;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --background-color: #f0f4f8;
+    --surface-color: #ffffff;
+    --border-color: #e0e7ff;
+    --text-color: #1e293b;
+    --text-secondary: #64748b;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'メイリオ', sans-serif;
+    background: linear-gradient(135deg, var(--background-color) 0%, #e0e7ff 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ======================== Header ======================== */
+header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.header-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+/* ======================== Main Content ======================== */
+main {
+    flex: 1;
+    padding: 2.5rem 2rem;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* ======================== Panels ======================== */
+.panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    gap: 2rem;
+}
+
+.node-list-panel,
+.diagram-panel {
+    background: var(--surface-color);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.node-list-panel:hover,
+.diagram-panel:hover {
+    box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15);
+}
+
+.node-list-panel h2,
+.diagram-panel h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* ======================== Node Count Badge ======================== */
+.node-count-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: var(--shadow-md);
+}
+
+/* ======================== Diagram Header Left ======================== */
+.diagram-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    align-items: flex-start;
+    flex: 1;
+}
+
+/* ======================== Download Button ======================== */
+.download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.8rem;
+    background: linear-gradient(135deg, var(--success-color), #059669);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.download-btn:hover {
+    background: linear-gradient(135deg, #0ca66a, #047857);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.25);
+}
+
+.download-btn:active {
+    transform: translateY(0);
+}
+
+.download-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    background: linear-gradient(135deg, #a1e6ca, #a1e6ca);
+}
+
+/* ======================== Legend ======================== */
+.legend {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 0.5rem 0.8rem;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+
+.legend-item.wireless::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: #cbd5e1;
+    border-top: 1px dashed #2563eb;
+    border-bottom: 1px dashed #2563eb;
+}
+
+.legend-item.wired::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background: #2563eb;
+    box-shadow: 0 0 3px rgba(37, 99, 235, 0.5);
+}
+
+/* ======================== Hint Text ======================== */
+.hint {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(139, 92, 246, 0.05));
+    border-left: 3px solid var(--primary-color);
+    border-radius: 8px;
+    font-style: italic;
+}
+
+/* ======================== Node List ======================== */
+.node-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+    gap: 0.5rem;
+}
+
+.node-item-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--surface-color), #f8fafc);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.node-item-icon:hover {
+    background: linear-gradient(135deg, #dbeafe, #ede9fe);
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.node-item-icon.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+}
+
+.node-item-icon.disabled:hover {
+    transform: none;
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    border-color: var(--border-color);
+    box-shadow: none;
+}
+
+.node-item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* ======================== Diagram Container ======================== */
+.diagram-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.diagram-container {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #f3f4f6 100%);
+    overflow: auto;
+    margin-top: 1rem;
+    position: relative;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.diagram-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.diagram-container::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+.diagram-container::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.diagram-container::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+.network-diagram {
+    width: 100%;
+    height: 100%;
+}
+
+/* ======================== Network Nodes ======================== */
+.network-node {
+    cursor: grab;
+    transition: all 0.2s ease;
+}
+
+.network-node:hover circle {
+    r: 58;
+    filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6));
+    stroke: var(--primary-color);
+    stroke-width: 3;
+}
+
+.network-node:active {
+    cursor: grabbing;
+}
+
+.network-node text {
+    font-size: 12px;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    font-weight: 600;
+    pointer-events: none;
+    fill: var(--text-color);
+}
+
+.network-node image {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.network-node image:hover {
+    filter: brightness(1.15) drop-shadow(0 4px 8px rgba(59, 130, 246, 0.3)) saturate(1.2);
+}
+
+/* ======================== Connection Lines ======================== */
+.connection-line {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.connection-line:hover {
+    stroke: var(--primary-color);
+    stroke-width: 3;
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+/* ======================== Footer ======================== */
+footer {
+    background: linear-gradient(135deg, var(--text-color), #334155);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    letter-spacing: 0.3px;
+}
+
+/* ======================== Responsive Design ======================== */
+@media (max-width: 1200px) {
+    main {
+        padding: 1.5rem;
+    }
+
+    .layout {
+        gap: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 2rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .header-subtitle {
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .node-list-panel,
+    .diagram-panel {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .node-count-badge {
+        align-self: flex-end;
+    }
+
+    .diagram-header-left {
+        width: 100%;
+    }
+
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .node-list {
+        grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+        gap: 0.4rem;
+    }
+
+    .node-item-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .legend {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        width: 100%;
+    }
+
+    .hint {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 640px) {
+    header {
+        padding: 1.5rem 1rem;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    .header-subtitle {
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 0.8rem;
+    }
+
+    .layout {
+        gap: 1rem;
+    }
+
+    .node-list-panel,
+    .diagram-panel {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+
+    .node-list {
+        grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+        gap: 0.3rem;
+    }
+
+    .node-item-icon {
+        width: 40px;
+        height: 40px;
+        padding: 0.3rem;
+    }
+
+    footer {
+        padding: 1.5rem 1rem;
+    }
+
+    footer p {
+        font-size: 0.85rem;
+    }
+}
