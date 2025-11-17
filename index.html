@@ -18,7 +18,7 @@
 
         <main>
             <div class="layout">
-                <!-- ノード一覧（上側）-->
+                <!-- ノード一覧（左側）-->
                 <aside class="node-list-panel">
                     <div class="panel-header">
                         <h2>📱 ノード一覧</h2>
@@ -30,24 +30,25 @@
                     </div>
                 </aside>
 
-                <!-- ネットワーク図（下側）-->
+                <!-- ネットワーク図（右側）-->
                 <section class="diagram-panel">
                     <div class="panel-header">
-                        <div class="diagram-header-left">
-                            <h2>🔗 ネットワーク図</h2>
-                            <div class="legend">
-                                <span class="legend-item wireless">破線 = 無線</span>
-                                <span class="legend-item wired">実線 = 有線</span>
-                            </div>
+                        <h2>🔗 ネットワーク図</h2>
+                    </div>
+                    <div class="diagram-container">
+                        <svg id="networkDiagram" class="network-diagram" viewBox="0 0 1200 900"></svg>
+                    </div>
+                    <!-- ネットワーク図下部：凡例と操作説明 -->
+                    <div class="diagram-footer">
+                        <div class="legend">
+                            <span class="legend-item wireless">破線 = 無線</span>
+                            <span class="legend-item wired">実線 = 有線</span>
                         </div>
+                        <p class="hint">【デスクトップ】中央をドラッグ=移動 | 枠をドラッグ=接続 | クリック=削除 | 線をクリック=無線/有線切り替え</p>
+                        <p class="hint">【iPad/タッチ】中央をロングプレス+ドラッグ=移動 | 枠をロングプレス+ドラッグ=接続 | 中央をタップ=削除 | 線をタップ=無線/有線切り替え</p>
                         <button class="download-btn" id="downloadBtn" title="ネットワーク図をPNGで保存">
                             📥 PNGで保存
                         </button>
-                    </div>
-                    <p class="hint">【デスクトップ】中央をドラッグ=移動 | 枠をドラッグ=接続 | クリック=削除 | 線をクリック=無線/有線切り替え</p>
-                    <p class="hint">【iPad/タッチ】中央をロングプレス+ドラッグ=移動 | 枠をロングプレス+ドラッグ=接続 | 中央をタップ=削除 | 線をタップ=無線/有線切り替え</p>
-                    <div class="diagram-container">
-                        <svg id="networkDiagram" class="network-diagram" viewBox="0 0 1200 900"></svg>
                     </div>
                 </section>
             </div>

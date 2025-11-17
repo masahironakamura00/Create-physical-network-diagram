@@ -290,7 +290,7 @@ main {
 
 .diagram-container {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 8 / 3;
     border: 2px solid var(--border-color);
     border-radius: 12px;
     background: linear-gradient(135deg, #ffffff 0%, #f9fafb 50%, #f3f4f6 100%);
@@ -373,13 +373,28 @@ main {
     filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
 }
 
+/* ======================== Diagram Footer ======================== */
+.diagram-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    margin-top: 1.5rem;
+    align-items: center;
+}
+
+.diagram-footer .download-btn {
+    align-self: center;
+    margin-top: 0.5rem;
+}
+
 /* ======================== Footer ======================== */
 footer {
     background: linear-gradient(135deg, var(--text-color), #334155);
     color: white;
     padding: 2rem;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: auto;
     border-top: 1px solid var(--border-color);
 }
 
@@ -444,11 +459,6 @@ footer p {
 
     .diagram-header-left {
         width: 100%;
-    }
-
-    .download-btn {
-        width: 100%;
-        justify-content: center;
     }
 
     .node-list {
